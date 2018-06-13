@@ -79,19 +79,19 @@ bool Renderer::ShouldClose()
 	return glfwWindowShouldClose(window);
 }
 
-void Renderer::processInput()
+void Renderer::ProcessInput()
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 }
 
-void Renderer::prepare()
+void Renderer::Prepare()
 {
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//Clear the buffers
 }
 
-void Renderer::update()
+void Renderer::Update()
 {
 	glfwSwapBuffers(window);//Swap front and back buffer
 	glfwPollEvents();//Poll for and process events

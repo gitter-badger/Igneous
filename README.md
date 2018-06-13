@@ -28,12 +28,14 @@ cd Igneous
 
 * [Assimp](http://assimp.sourceforge.net/)
 * [Bullet Physics](http://bulletphysics.org/wordpress/)
+* [EnTT](https://github.com/skypjack/entt)
 * [glad](https://github.com/Dav1dde/glad)
 * [GLFW](http://www.glfw.org/)
-* [GLM](https://glm.g-truc.net/0.9.8/index.html)
+* [GLM](https://glm.g-truc.net/)
 * [irrXML](http://www.ambiera.com/irrxml/)
 * [Lua](https://www.lua.org/)
 * [LuaJIT](http://luajit.org/)
+* [Mono](https://www.mono-project.com/)
 * [OpenAL](https://www.openal.org/)
 * [OpenGL](https://www.opengl.org/)
 * [RakNet](https://github.com/facebookarchive/RakNet)
@@ -66,3 +68,4 @@ This project is licensed under the Creative Commons Attribution-NonCommercial-Sh
 ## Acknowledgements
 
 * Thank you to the authors of the dependencies used.
+* Thank you to the amazing teachers on YouTube: [ThinMatrix](https://www.youtube.com/user/ThinMatrix), [TheChernoProject](https://www.youtube.com/user/TheChernoProject), [thebennybox](https://www.youtube.com/user/thebennybox), [Code Rad](https://www.youtube.com/user/YouKondziu), and [Derek Banas](https://www.youtube.com/user/derekbanas).

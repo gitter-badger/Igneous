@@ -16,9 +16,9 @@ namespace Renderer
 	std::string GetExtensions();
 	void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 	bool ShouldClose();
-	void update();
-	void processInput();
-	void prepare();
+	void Update();
+	void ProcessInput();
+	void Prepare();
 	void Terminate();
 
 	extern GLFWwindow* window;
