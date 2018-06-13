@@ -2,7 +2,11 @@
 
 namespace Game
 {
-    public class Game
+    public static class Game
     {
+        public static void Main()
+        {
+            Igneous.Test.Run();
+        }
     }
 }
