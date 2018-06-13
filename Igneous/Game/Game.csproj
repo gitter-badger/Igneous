@@ -8,4 +8,8 @@
     <ProjectReference Include="..\LibIgneous\LibIgneous.csproj" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /Y &quot;$(ProjectDir)bin\Debug\netstandard2.0\Game.dll&quot; &quot;$(SolutionDir)Igneous\Game.dll&quot;" />
+  </Target>
+
 </Project>

@@ -3,7 +3,7 @@
 
 namespace Display
 {
-	bool Init();
+	bool Init(const int width, const int height, const char* title);
 	void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 	bool ShouldClose();
 	void Update();

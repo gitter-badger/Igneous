@@ -18,10 +18,10 @@ bool Scripting::Init()
 	MonoMethod* mainMethod = mono_class_get_method_from_name(gameClass, "Main", 0);
 	mono_runtime_invoke(mainMethod, NULL, NULL, NULL);
 
-	lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::os, sol::lib::io, sol::lib::jit, sol::lib::coroutine, sol::lib::count, sol::lib::table, sol::lib::string, sol::lib::debug);
+	lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::os, sol::lib::io, sol::lib::jit, sol::lib::coroutine, sol::lib::count, sol::lib::table, sol::lib::string, sol::lib::debug, sol::lib::bit32);
 
 	sol::table igneousTable = lua.create_named_table("igneous");
-	igneousTable.set("version", "v0.0.0.2");
+	igneousTable.set("version", "v0.0.2");
 	igneousTable.set("major", 0);
 	igneousTable.set("minor", 0);
 	igneousTable.set("patch", 2);
@@ -45,7 +45,7 @@ bool Scripting::Init()
 
 std::string Scripting::GetMonoVersion()
 {
-	return "5.12.0.260";
+	return mono_get_runtime_build_info();
 }
 
 std::string Scripting::GetLuaVersion()
@@ -78,7 +78,7 @@ void Scripting::Terminate()
 
 void Scripting::Run()
 {
-	std::clog << "a" << std::endl;
+	std::clog << "C# Ran!" << std::endl;
 }
 
 MonoDomain *Scripting::domain;

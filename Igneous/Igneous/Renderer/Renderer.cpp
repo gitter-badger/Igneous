@@ -12,7 +12,7 @@ bool Renderer::Init()
 		return false;
 	}
 
-	if (!Display::Init())
+	if (!Display::Init(800, 600, "Igneous"))
 	{
 		std::cerr << "Display failed to initialize!" << std::endl;
 		return false;
@@ -23,13 +23,14 @@ bool Renderer::Init()
 		std::cerr << "GLAD failed to initialize!" << std::endl;
 		return false;
 	}
+
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_MULTISAMPLE);
 	return true;
 }
 
-std::string Renderer::GetGLADVersion() { return "0.1.16a0"; }
+std::string Renderer::GetGLADVersion() {return "0.1.16a0"; }
 std::string Renderer::GetGLFWVersion() { return glfwGetVersionString(); }
 const GLubyte* Renderer::GetOpenGLVersion() { return glGetString(GL_VERSION); }
 const GLubyte* Renderer::GetVendor() { return glGetString(GL_VENDOR); }

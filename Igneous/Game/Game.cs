@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace Game
 {
@@ -7,6 +8,7 @@ namespace Game
         public static void Main()
         {
             Igneous.Test.Run();
+            System.Console.WriteLine("Test from C#");
         }
     }
 }

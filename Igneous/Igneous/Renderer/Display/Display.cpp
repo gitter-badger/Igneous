@@ -5,13 +5,13 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb\image.h>
 
-bool Display::Init()
+bool Display::Init(const int width, const int height, const char* title)
 {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_SAMPLES, 4);
-	window = glfwCreateWindow(800, 600, "Igneous", NULL, NULL);//Create the window
+	window = glfwCreateWindow(width, height, title, NULL, NULL);//Create the window
 	glfwMakeContextCurrent(window);
 
 	GLFWimage images[3];
