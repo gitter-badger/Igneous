@@ -2,7 +2,6 @@
 
 #include <iostream>
 
-#define STB_IMAGE_IMPLEMENTATION
 #include <stb\image.h>
 
 bool Display::Init(const int width, const int height, const char* title)

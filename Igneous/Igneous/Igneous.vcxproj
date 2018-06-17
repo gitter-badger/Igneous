@@ -30,13 +30,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -169,25 +169,34 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Audio\Audio.h" />
+    <ClInclude Include="ECS\ECS.h" />
     <ClInclude Include="Input\Input.h" />
+    <ClInclude Include="Loader\Loader.h" />
+    <ClInclude Include="Renderer\Model\Model.h" />
     <ClInclude Include="Networking\Networking.h" />
     <ClInclude Include="Physics\Physics.h" />
     <ClInclude Include="Renderer\Display\Display.h" />
     <ClInclude Include="Renderer\Renderer.h" />
+    <ClInclude Include="Renderer\Texture\Texture.h" />
     <ClInclude Include="Scripting\Scripting.h" />
+    <ClInclude Include="Renderer\Shader\Shader.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Audio\Audio.cpp" />
+    <ClCompile Include="ECS\ECS.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Igneous.cpp" />
     <ClCompile Include="Input\Input.cpp" />
+    <ClCompile Include="Loader\Loader.cpp" />
+    <ClCompile Include="Renderer\Model\Model.cpp" />
     <ClCompile Include="Networking\Networking.cpp" />
     <ClCompile Include="Physics\Physics.cpp" />
     <ClCompile Include="Renderer\Display\Display.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Scripting\Scripting.cpp" />
+    <ClCompile Include="Renderer\Shader\Shader.cpp" />
     <ClCompile Include="stb_vorbis.c" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

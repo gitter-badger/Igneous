@@ -15,6 +15,7 @@ bool Renderer::Init()
 	if (!Display::Init(800, 600, "Igneous"))
 	{
 		std::cerr << "Display failed to initialize!" << std::endl;
+		glfwTerminate();
 		return false;
 	}
 
@@ -32,6 +33,7 @@ bool Renderer::Init()
 
 std::string Renderer::GetGLADVersion() {return "0.1.16a0"; }
 std::string Renderer::GetGLFWVersion() { return glfwGetVersionString(); }
+std::string Renderer::GetGLMVersion() { return std::to_string(GLM_VERSION_MAJOR) + "." + std::to_string(GLM_VERSION_MINOR) + "." + std::to_string(GLM_VERSION_PATCH); }
 const GLubyte* Renderer::GetOpenGLVersion() { return glGetString(GL_VERSION); }
 const GLubyte* Renderer::GetVendor() { return glGetString(GL_VENDOR); }
 const GLubyte* Renderer::GetRenderer() { return glGetString(GL_RENDERER); }
@@ -52,6 +54,23 @@ std::string Renderer::GetExtensions()
 		}
 	}
 	return extensions;
+}
+
+bool Renderer::UseShader(Shader shader)
+{
+
+	return true;
+}
+
+void Renderer::BindTexture(unsigned int unit, Texture::Texture texture)
+{
+	glActiveTexture(GL_TEXTURE0 + unit);
+	glBindTexture(GL_TEXTURE_2D, texture.id);
+}
+
+void Renderer::Render(Model model)
+{
+
 }
 
 void Renderer::Terminate()
