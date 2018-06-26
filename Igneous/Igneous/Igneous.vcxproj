@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -172,6 +172,7 @@
     <ClInclude Include="ECS\ECS.h" />
     <ClInclude Include="Input\Input.h" />
     <ClInclude Include="Loader\Loader.h" />
+    <ClInclude Include="Renderer\Mesh\Mesh.h" />
     <ClInclude Include="Renderer\Model\Model.h" />
     <ClInclude Include="Networking\Networking.h" />
     <ClInclude Include="Physics\Physics.h" />
@@ -190,7 +191,6 @@
     <ClCompile Include="Igneous.cpp" />
     <ClCompile Include="Input\Input.cpp" />
     <ClCompile Include="Loader\Loader.cpp" />
-    <ClCompile Include="Renderer\Model\Model.cpp" />
     <ClCompile Include="Networking\Networking.cpp" />
     <ClCompile Include="Physics\Physics.cpp" />
     <ClCompile Include="Renderer\Display\Display.cpp" />

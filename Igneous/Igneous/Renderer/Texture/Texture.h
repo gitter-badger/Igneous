@@ -10,9 +10,10 @@ namespace Texture
 		unsigned int type;
 	};
 	
-	enum type
+	enum
 	{
 		DIFFUSE,
+		SPECULAR,
 		NUM_TYPES
 	};
 }

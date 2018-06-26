@@ -21,8 +21,7 @@ namespace Renderer
 	const GLubyte* GetRenderer();
 	const GLubyte* GetShaderLanguageVersion();
 	std::string GetExtensions();
-	bool UseShader(Shader shader);
 	void BindTexture(unsigned int unit, Texture::Texture texture);
-	void Render(Model model);
+	void Render(Model* model);
 	void Terminate();
 }

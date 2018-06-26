@@ -9,4 +9,6 @@ namespace ECS
 	bool Init();
 	std::string GetEnTTVersion();
 	void Terminate();
+
+	extern entt::DefaultRegistry registry;
 }

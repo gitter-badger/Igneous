@@ -1,8 +1,8 @@
 #pragma once
 
-class Model
+#include "..\Mesh\Mesh.h"
+
+struct Model
 {
-public:
-	Model();
-	~Model();
+	Mesh* mesh;
 };

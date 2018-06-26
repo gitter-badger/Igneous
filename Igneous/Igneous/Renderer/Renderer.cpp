@@ -56,21 +56,16 @@ std::string Renderer::GetExtensions()
 	return extensions;
 }
 
-bool Renderer::UseShader(Shader shader)
-{
-
-	return true;
-}
-
 void Renderer::BindTexture(unsigned int unit, Texture::Texture texture)
 {
 	glActiveTexture(GL_TEXTURE0 + unit);
 	glBindTexture(GL_TEXTURE_2D, texture.id);
 }
 
-void Renderer::Render(Model model)
+void Renderer::Render(Model* model)
 {
-
+	glBindVertexArray(model->mesh->vao);
+	glDrawElements(GL_TRIANGLES, model->mesh->num_verticies, GL_UNSIGNED_INT, 0);
 }
 
 void Renderer::Terminate()

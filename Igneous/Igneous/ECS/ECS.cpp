@@ -2,7 +2,7 @@
 
 bool ECS::Init()
 {
-
+	return true;
 }
 
 std::string ECS::GetEnTTVersion()
@@ -14,3 +14,5 @@ void ECS::Terminate()
 {
 
 }
+
+entt::DefaultRegistry registry;
