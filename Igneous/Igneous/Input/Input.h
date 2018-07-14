@@ -4,5 +4,6 @@
 namespace Input
 {
 	bool Init();
+	void ProcessInput();
 	void Terminate();
 }

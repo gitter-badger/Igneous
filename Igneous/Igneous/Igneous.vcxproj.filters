@@ -110,5 +110,29 @@
     <None Include="assimp-vc140-mt.dll" />
     <None Include="Game.dll" />
     <None Include="LibIgneous.dll" />
+    <None Include="dear-imgui\imgui_user.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="dear-imgui\widgets\color_picker.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="dear-imgui\widgets\color_wheel.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="dear-imgui\widgets\dock.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="dear-imgui\widgets\file_list.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="dear-imgui\widgets\gizmo.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="dear-imgui\widgets\memory_editor.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="dear-imgui\widgets\range_slider.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

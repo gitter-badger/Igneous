@@ -6,12 +6,14 @@
 
 bool Display::Init(const int width, const int height, const char* title)
 {
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_SAMPLES, 4);
-	window = glfwCreateWindow(width, height, title, NULL, NULL);//Create the window
-	glfwMakeContextCurrent(window);
+	if (!glfwInit())
+	{
+		std::cerr << "Failed to init GLFW!" << std::endl;
+		return false;
+	}
+
+	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	window = glfwCreateWindow(width, height, title, NULL, NULL);//Create the window 4th param glfwGetPrimaryMonitor() for fullscreen
 
 	GLFWimage images[3];
 	images[0].pixels = stbi_load("Resources/icons/icon16.png", &images[0].width, &images[0].height, 0, 4);
@@ -27,6 +29,8 @@ bool Display::Init(const int width, const int height, const char* title)
 
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
+	glfwSetWindow();
+
 	//Setup delta time and fps counter
 	currentFrameTime = glfwGetTime();
 	lastSecondTime = currentFrameTime;
@@ -35,7 +39,7 @@ bool Display::Init(const int width, const int height, const char* title)
 	return true;
 }
 
-bool Display::ShouldClose()
+int Display::ShouldClose()
 {
 	return glfwWindowShouldClose(window);
 }
@@ -48,13 +52,11 @@ void Display::ProcessInput()
 
 void Display::Prepare()
 {
-	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//Clear the buffers
+	
 }
 
 void Display::Update()
 {
-	glfwSwapBuffers(window);//Swap front and back buffer
 	glfwPollEvents();//Poll for and process events
 
 	currentFrameTime = glfwGetTime();//Set the current time
@@ -67,7 +69,8 @@ void Display::Update()
 	frames++;
 	if ((currentFrameTime - lastSecondTime) >= 1)
 	{
-		std::cout << frames << std::endl;
+		fps = frames;
+		std::cout << fps << std::endl;
 		lastSecondTime = currentFrameTime;
 		frames = 0;
 	}
@@ -75,12 +78,41 @@ void Display::Update()
 
 void Display::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-	glViewport(0, 0, width, height);
+	
 }
 
 void Display::Terminate()
 {
 	glfwDestroyWindow(window);
+	glfwTerminate();
+}
+
+static void* Display::glfwNativeWindowHandle()
+{
+#	if BX_PLATFORM_LINUX || BX_PLATFORM_BSD
+	return (void*)(uintptr_t)glfwGetX11Window(window);
+#	elif BX_PLATFORM_OSX
+	return glfwGetCocoaWindow(window);
+#	elif BX_PLATFORM_WINDOWS
+	return glfwGetWin32Window(window);
+#	endif // BX_PLATFORM_
+}
+
+static void Display::glfwSetWindow()
+{
+	bgfx::PlatformData pd;
+#	if BX_PLATFORM_LINUX || BX_PLATFORM_BSD
+	pd.ndt = glfwGetX11Display();
+#	elif BX_PLATFORM_OSX
+	pd.ndt = NULL;
+#	elif BX_PLATFORM_WINDOWS
+	pd.ndt = NULL;
+#	endif // BX_PLATFORM_WINDOWS
+	pd.nwh = glfwNativeWindowHandle();
+	pd.context = NULL;
+	pd.backBuffer = NULL;
+	pd.backBufferDS = NULL;
+	bgfx::setPlatformData(pd);
 }
 
 GLFWwindow* Display::window;
@@ -89,3 +121,4 @@ double Display::lastFrameTime;
 double Display::currentFrameTime;
 double Display::delta;
 int Display::frames;
+int Display::fps;

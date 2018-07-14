@@ -16,12 +16,12 @@ namespace Renderer
 	std::string GetGLADVersion();
 	std::string GetGLFWVersion();
 	std::string GetGLMVersion();
-	const GLubyte* GetOpenGLVersion();
-	const GLubyte* GetVendor();
-	const GLubyte* GetRenderer();
-	const GLubyte* GetShaderLanguageVersion();
 	std::string GetExtensions();
 	void BindTexture(unsigned int unit, Texture::Texture texture);
 	void Render(Model* model);
+	void Update();
 	void Terminate();
+
+	extern int width;
+	extern int height;
 }

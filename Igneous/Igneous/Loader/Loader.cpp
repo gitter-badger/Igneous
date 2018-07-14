@@ -4,7 +4,6 @@
 #include <assimp\scene.h>
 #include <assimp\postprocess.h>
 #include <assimp\version.h>
-#define STB_IMAGE_IMPLEMENTATION
 #include <stb\image.h>
 #include <glad\glad.h>
 
