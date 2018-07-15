@@ -1,7 +1,6 @@
 #include "Renderer.h"
 
 #include <iostream>
-#include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
 
 #include "Display\Display.h"
@@ -26,6 +25,7 @@ bool Renderer::Init()
 
 	if (bgfx::init(init))
 	{
+		caps = bgfx::getCaps();
 		bgfx::setDebug(BGFX_DEBUG_TEXT);
 		bgfx::setViewRect(0, 0, 0, uint16_t(width), uint16_t(height));
 		bgfx::setViewClear(0
@@ -34,7 +34,6 @@ bool Renderer::Init()
 			, 1.0f
 			, 0
 		);
-		std::clog << bgfx::getRendererName(bgfx::getRendererType()) << std::endl;
 		return true;
 	}
 	else
@@ -44,26 +43,69 @@ bool Renderer::Init()
 	}
 }
 
-std::string Renderer::GetGLADVersion() {return "0.1.16a0"; }
 std::string Renderer::GetGLFWVersion() { return glfwGetVersionString(); }
 std::string Renderer::GetGLMVersion() { return std::to_string(GLM_VERSION_MAJOR) + "." + std::to_string(GLM_VERSION_MINOR) + "." + std::to_string(GLM_VERSION_PATCH); }
+std::string Renderer::GetbgfxVersion() { return std::to_string(BGFX_API_VERSION); }
+std::string Renderer::GetRenderer() { return bgfx::getRendererName(caps->rendererType); }
 
-std::string Renderer::GetExtensions()
+std::string Renderer::GetSupportedRenderers()
 {
-	std::string extensions;
-	GLint n;
-	glGetIntegerv(GL_NUM_EXTENSIONS, &n);
-	if (n > 0)
+	std::string supportedRenderers = "Supported Renderers: ";
+	bgfx::RendererType::Enum rendererTypes[bgfx::RendererType::Count];
+	uint8_t num = bgfx::getSupportedRenderers(bgfx::RendererType::Count, rendererTypes);
+
+	for (size_t i = 0; i < num; i++)
 	{
-		GLint i;
-		for (i = 0; i < n; i++)
-		{
-			extensions += " ";
-			extensions += (char*)glGetStringi(GL_EXTENSIONS, i);
-		}
+		supportedRenderers += bgfx::getRendererName(rendererTypes[i]);
+		supportedRenderers += i != num - 1 ? ", " : "";
 	}
-	return extensions;
+
+	return supportedRenderers;
 }
+
+std::string Renderer::GetVendor(uint16_t vendorId)
+{
+	std::string vendorName;
+
+	switch (vendorId)
+	{
+	case BGFX_PCI_ID_NONE:
+		vendorName = "Autoselect adapter";
+		break;
+	case BGFX_PCI_ID_SOFTWARE_RASTERIZER:
+		vendorName = "Software rasterizer";
+		break;
+	case BGFX_PCI_ID_AMD:
+		vendorName = "AMD adapter";
+		break;
+	case BGFX_PCI_ID_INTEL:
+		vendorName = "Intel adapter";
+		break;
+	case BGFX_PCI_ID_NVIDIA:
+		vendorName = "nVidia adapter";
+		break;
+	default:
+		vendorName = "Unknown Vendor";
+		break;
+	}
+
+	return vendorName;
+}
+
+std::string Renderer::GetGpuInfo()
+{
+	std::string gpuInfo = "Num GPUs: " + std::to_string(caps->numGPUs) + " | Selected GPU Device ID: " + std::to_string(caps->deviceId) + "\n";
+	std::string isSelected;
+	
+	for (std::size_t i = 0; i < caps->numGPUs; i++)
+	{
+		isSelected = caps->deviceId == caps->gpu[i].deviceId ? "(Selected)" : "";
+		gpuInfo += "GPU[" + std::to_string(i) + "]" + isSelected + " | Vendor: " + GetVendor(caps->gpu[i].vendorId) + " | Device ID: " + std::to_string(caps->gpu[i].deviceId) + "\n";
+	}
+
+	return gpuInfo;
+}
+
 
 void Renderer::BindTexture(unsigned int unit, Texture::Texture texture)
 {
@@ -93,3 +135,4 @@ void Renderer::Terminate()
 
 int Renderer::width;
 int Renderer::height;
+const bgfx::Caps* Renderer::caps;
