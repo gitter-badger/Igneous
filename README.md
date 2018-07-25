@@ -1,5 +1,7 @@
 # Igneous
 
+[![Join the chat at https://gitter.im/prowolf/Igneous](https://badges.gitter.im/prowolf/Igneous.svg)](https://gitter.im/prowolf/Igneous?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Igneous is a 3D game engine.
 
 ## Getting Started
